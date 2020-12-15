@@ -10,7 +10,7 @@ Vue.prototype.$axios=axios
 import ElementUI from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
 Vue.use(ElementUI)
-//
+//嗷嗷嗷
 import Vant from "vant"
 import "vant/lib/index.css"
 Vue.use(Vant)
