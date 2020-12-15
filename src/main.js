@@ -15,8 +15,8 @@ import Vant from "vant"
 import "vant/lib/index.css"
 Vue.use(Vant)
 
-import echart from "echarts"
-Vue.prototype.$echart=echart
+import echarts from "echarts"
+Vue.prototype.$echarts=echarts
 
 new Vue({
   router,
