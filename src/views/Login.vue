@@ -2,7 +2,7 @@
   <div class="login">
     <header>UI-ADMIN</header>
     <el-form :model="user" ref="loginForm" :rules="rules">
-      <el-form-item prop="-sername">
+      <el-form-item prop="username">
         <el-input placeholder="请输入用户名" v-model="user.username" />
       </el-form-item>
       <el-form-item prop="password">
