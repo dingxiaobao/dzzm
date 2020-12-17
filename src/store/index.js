@@ -6,7 +6,7 @@ Vue.use(Vuex)
 import VuexPersistence from 'vuex-persist'
 const vuexLocal = new VuexPersistence({
   storage: window.sessionStorage, //配置存储介质，默认持久化到本地存储中
-  keep: "03B_token"
+  key: "03B_token"
 })
 export default new Vuex.Store({
   state: {

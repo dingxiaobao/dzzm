@@ -12,7 +12,15 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: ()=>import('@/views/Home.vue')
+    component: ()=>import('@/views/Home.vue'),
+    redirect:"/index",
+    children:[
+      {
+        path: '/index',
+        name: 'admin_index',
+        component: ()=>import('@/views/home/index')
+      }, 
+    ]
   },
 ]
 

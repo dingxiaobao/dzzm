@@ -10,7 +10,7 @@
   padding: 0px;
   box-sizing: border-box;
 }
-html,body,html{
+html,body,#app{
   width: 100%;
   height: 100%;
 }
