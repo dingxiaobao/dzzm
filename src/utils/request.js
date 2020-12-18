@@ -1,7 +1,7 @@
 //1. 导入axios对象
 import axios from "axios";
 import store from '../store'
-
+// import router from "../router"
 //2. 创建对象实例，create方法
 const Server = axios.create({
     baseURL: "", //请求接口的基础地址
@@ -12,7 +12,10 @@ const Server = axios.create({
 Server.interceptors.request.use(function (config) {
     //过期token
     config.headers['token'] = store.state.token
-    console.log(config);
+    // console.log(config);
+
+    store.commit("setLoading",true)
+
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -20,9 +23,13 @@ Server.interceptors.request.use(function (config) {
 
 //4. 定义相应拦截器
 Server.interceptors.response.use(function (response) {
-    console.log(response);
+    // console.log(response);
     //过滤出data的数据
     if (response.status == 200) {
+        setTimeout(()=>{
+            store.commit("setLoading",false)
+        },1000)
+    
         return response.data;
     }
     return response;

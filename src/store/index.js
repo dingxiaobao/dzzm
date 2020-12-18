@@ -11,7 +11,10 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
     token: '',
-    loginmsg: {}
+    loginmsg: {},
+    isLoading:false,
+    //面包屑
+    bread:[]
   },
   mutations: {
     dologin(state, obj) {
@@ -21,6 +24,15 @@ export default new Vuex.Store({
     logout(state){
       state.token=""
       state.loginmsg=""
+    },
+    //loading效果
+    setLoading(state,status){
+      state.isLoading=status
+    },
+    //设置面包屑
+    setBread(state,bread){
+     console.log(bread);
+      state.bread=bread
     }
   },
   actions: {},

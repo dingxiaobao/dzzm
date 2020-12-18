@@ -6,10 +6,15 @@
         <el-input placeholder="请输入用户名" v-model="user.username" />
       </el-form-item>
       <el-form-item prop="password">
-        <el-input placeholder="请输入密码" v-model="user.password" type="password"/>
+        <el-input placeholder="请输入密码" v-model="user.password" type="password" />
       </el-form-item>
       <el-form-item>
-        <el-button type="success" style="width:100%" @click="doLogin">立即登录</el-button>
+        <el-button
+          type="success"
+          style="width:100%"
+          :loading="loading"
+          @click="doLogin"
+        >{{loading?"登录中...":"立即登录"}}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -27,36 +32,45 @@ export default {
           { required: true, message: "请输入用户名", trigger: "blur" }
         ],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }]
-      }
+      },
+      loading: false
     };
   },
   methods: {
     doLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-            //登录成功后的操作
-            this.$axios.post("/admin/login",this.user).then(dzz=>{
-                console.log(dzz.data);
-                var obj={
-                    token:dzz.data.token,
-                    username:dzz.data.username
-                }
-                //存储token值
-                this.$store.commit("dologin",obj)
-                //跳转
-                this.$router.push("/home")
-                this.$message.success("登录成功")
-            }).catch(error=>{
-                console.log(error.response.data)
-                this.$message.error(error.response.data.msg)
-                return false
+          //校验成功转圈圈
+          this.loading = true;
+          //登录成功后的操作
+          this.$axios
+            .post("/admin/login", this.user)
+            .then(dzz => {
+              this.loading = false;
+              console.log(dzz.data);
+              this.$message.success("登录成功");
+              var obj = {
+                token: dzz.data.token,
+                username: dzz.data.username
+              };
+              //存储token值
+              this.$store.commit("dologin", obj);
+              //跳转
+              this.$router.push("/home");
             })
+            .catch(error => {
+              this.loading = false;
+
+              console.log(error.response.data);
+              this.$message.error(error.response.data.msg);
+              return false;
+            });
         } else {
           return false;
         }
       });
     }
-  },
+  }
 };
 </script>
 <style lang="scss">
