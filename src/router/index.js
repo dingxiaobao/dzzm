@@ -5,6 +5,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+      path:'/',
+      redirect:"/index",                                                
+  },
+  {
     path: '/login',
     name: 'admin_login',
     component: ()=>import('@/views/Login')
@@ -13,12 +17,15 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: ()=>import('@/views/Home.vue'),
-    redirect:"/index",
+    
     children:[
       {
         path: '/index',
         name: 'admin_index',
-        component: ()=>import('@/views/home/index')
+        component: ()=>import('@/views/home/index'),
+        meta:{
+          bread:['后台管理']
+        }
       }, 
       {
         path: '/picture',
@@ -33,7 +40,7 @@ const routes = [
         name: 'admin_list',
         component: ()=>import('@/views/home/list'),
         meta:{
-          bread:['用户管理','用户列表']
+          bread:['会员管理','会员列表']
         }
       }, 
       {
