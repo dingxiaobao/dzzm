@@ -38,7 +38,7 @@
       </el-aside>
       <el-main v-loading="this.$store.state.isLoading">
         <!-- 面包屑 -->
-        <BreadMenu/>
+        <BreadMenu />
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import BreadMenu from "../views/BreadMenu"
+import BreadMenu from "../views/BreadMenu";
 import nav from "../utils/navMenu"; //导入菜单栏
 export default {
-  components:{BreadMenu},
+  components: { BreadMenu },
   data() {
     return {
       flag: false,
@@ -67,9 +67,7 @@ export default {
   },
   methods: {
     Logout(index) {
-      // console.log(index);
-      this.submenu = this.menus[index].children;
-      console.log(this.submenu);
+      // console.log(index)
       //执行退出
       if (index == "logout")
         this.$axios
@@ -83,6 +81,8 @@ export default {
             this.$message.error(error.response.data.msg);
             return false;
           });
+      this.submenu = this.menus[index].children;
+      console.log(this.submenu);
     }
   }
 };
@@ -113,7 +113,6 @@ export default {
   .el-main {
     width: 100%;
     background: #ffffff;
-    
   }
 }
 </style>
