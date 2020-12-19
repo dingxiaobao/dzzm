@@ -13,7 +13,12 @@
         <el-menu-item :index="index" v-for="(item,index) in menus" :key="index">{{item.name}}</el-menu-item>
 
         <el-submenu index="2">
-          <template slot="title">我的工作台</template>
+          <template slot="title">
+            <div class="tt">
+              <img src="../assets/logo.png" alt />
+            </div>
+            {{this.$store.state.loginmsg.username}}
+          </template>
           <el-menu-item index="2-1">修改</el-menu-item>
           <el-menu-item index="logout">退出</el-menu-item>
         </el-submenu>
@@ -113,6 +118,22 @@ export default {
   .el-main {
     width: 100%;
     background: #ffffff;
+  }
+  .tt {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ccc;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      border-radius: 50%;
+    }
   }
 }
 </style>

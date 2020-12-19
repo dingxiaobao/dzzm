@@ -28,7 +28,7 @@ Server.interceptors.response.use(function (response) {
     if (response.status == 200) {
         setTimeout(()=>{
             store.commit("setLoading",false)
-        },1000)
+        },100)
     
         return response.data;
     }
