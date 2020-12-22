@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header style="background: #545c64;color: white;">
       <h3>UNI-ADMIN</h3>
       <el-menu
         class="el-menu-demo"
@@ -35,7 +35,7 @@
           unique-opened
           router
         >
-          <el-menu-item :index="item.url" v-for="(item,index) in submenu" :key="index">
+          <el-menu-item :index="item.url" v-for="item in submenu" :key="item.id">
             <i :class="item.icon"></i>
             <span>{{item.name}}</span>
           </el-menu-item>
@@ -92,7 +92,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" >
+<style lang="scss">
 .el-container {
   width: 100%;
   height: 100%;
@@ -102,8 +102,6 @@ export default {
     font-size: 18px;
     justify-content: space-between;
     width: 100%;
-    background: #545c64;
-    color: white;
     align-items: center;
   }
   .el-aside {

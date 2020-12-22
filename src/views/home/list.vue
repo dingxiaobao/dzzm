@@ -205,7 +205,7 @@ export default {
         });
     },
     //修改
-    // update(id) {
+    // update(id) {【
     //   this.upd = id;
     //   this.addFlag = true;
     // },
