@@ -10,7 +10,11 @@
         active-text-color="#ffd04b"
         @select="Logout"
       >
-        <el-menu-item :index="index" v-for="(item,index) in menus" :key="index">{{item.name}}</el-menu-item>
+        <el-menu-item
+          :index="index.toString()"
+          v-for="(item,index) in menus"
+          :key="index"
+        >{{item.name}}</el-menu-item>
 
         <el-submenu index="2">
           <template slot="title">
@@ -62,19 +66,18 @@ export default {
       submenu: [] //二级菜单
     };
   },
+  mounted() {
+    this.Logout();
+  },
   created() {
     console.log(nav);
     this.menus = nav;
     this.submenu = this.menus[0].children;
   },
-  mounted() {
-    this.Logout();
-  },
   methods: {
     Logout(index) {
-      // console.log(index)
       //执行退出
-      if (index == "logout")
+      if (index == "logout"){
         this.$axios
           .post("/admin/logout")
           .then(dzz => {
@@ -86,6 +89,7 @@ export default {
             this.$message.error(error.response.data.msg);
             return false;
           });
+      }   
       this.submenu = this.menus[index].children;
       console.log(this.submenu);
     }
