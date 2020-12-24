@@ -42,6 +42,14 @@ const routes = [
         meta:{
           bread:['会员管理','会员列表']
         }
+      },  
+      {
+        path: '/goodlist',
+        name: 'admin_goodlist',
+        component: ()=>import('@/views/home/goodlist'),
+        meta:{
+          bread:['管理','图书列表']
+        }
       }, 
       {
         path: '/setting',

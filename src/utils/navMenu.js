@@ -12,6 +12,11 @@ export default [
                 icon:"el-icon-picture",
                 url:'/picture'
             },
+            {
+                name:'用户列表',
+                icon:"el-icon-s-cooperation",
+                url:'/index'
+            },
         ]
     },
     {
@@ -20,10 +25,25 @@ export default [
             {
                 name:'商品列表',
                 icon:"el-icon-s-data",
-                url:'/index'
+                url:'/goodlist'
             }, 
             {
                 name:'分类列表',
+                icon:"el-icon-s-data",
+                url:'/index'
+            },
+            {
+                name:'商品规格',
+                icon:"el-icon-s-data",
+                url:'/index'
+            },
+            {
+                name:'商品价格',
+                icon:"el-icon-s-data",
+                url:'/index'
+            },
+            {
+                name:'商品分类',
                 icon:"el-icon-s-data",
                 url:'/index'
             },

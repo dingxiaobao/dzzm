@@ -22,7 +22,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="user_level.name" label="会员等级" width="180"></el-table-column>
+        <el-table-column prop="user_level" label="会员等级" width="180"></el-table-column>
         <el-table-column prop="update_time" label="登录注册" width="180"></el-table-column>
         <el-table-column label="状态" width="180">
           <template v-slot="scope">
@@ -95,12 +95,7 @@
         <el-container>
           <el-aside width="150px">
             <ul>
-              <li
-                v-for="(item,key) in list"
-                :key="key"
-                :class="{act:item.id==cid}"
-                @click.self="hh(item.id)"
-              >
+              <li v-for="(item,key) in list" :key="key" @click.self="hh(item.id)">
                 <span>{{item.name}}</span>
                 <span>{{item.images_count}}</span>
               </li>
@@ -108,8 +103,8 @@
           </el-aside>
           <el-main>
             <el-row :gutter="20">
-              <el-col :span="6" v-for="item in imglist" :key="item.id">
-                <el-card :body-style="{ padding: '0px' }">
+              <el-col :span="6">
+                <el-card :body-style="{ padding: '0px' }" v-for="item in imglist" :key="item.id">
                   <el-image :src="item.url" style="width:150px;height:150px" />
                   <div style="padding: 14px;">
                     <span>{{item.name}}</span>
@@ -282,13 +277,13 @@ export default {
     //右侧的图片列表
     getimage() {
       this.$axios
-        .get(`/admin/imageclass/${this.cid}/image/1`).then(dzz => {
+        .get(`/admin/imageclass/${this.cid}/image/1`)
+        .then(dzz => {
           console.log(dzz);
           this.imglist = dzz.data.list;
         })
         .catch(error => {
-          this.$message.error(error.response.data.msg);
-          return false;
+          console.log(error.response.data);
         });
     },
     hh(id) {

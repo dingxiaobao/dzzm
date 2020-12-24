@@ -119,7 +119,7 @@ export default {
   }
   .el-main {
     width: 100%;
-    background: #ffffff;
+    background: #f0f0f0;
   }
   .tt {
     width: 25px;
