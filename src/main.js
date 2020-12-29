@@ -19,33 +19,24 @@ import echarts from "echarts"
 Vue.prototype.$echarts = echarts
 
 //全局路由守卫
-router.beforeEach((to, form, next) => {
-  // //创建一个token与home中token相比较
-  // let token = sessionStorage.getItem('03B_token');
-  // if (to.path.indexOf("/admin") > -1) {
-  //判断
-  if (to.path == '/login') {
-    // if(store.state.token!=""){
-    //   next("/login")
-    // }
-  } else {
-    if (store.state.token == "") {
-      alert('请登录')
-      next('/login')
-    }
-    // }
-
-    //路由守卫添加面包屑
-    console.log(to.meta)
-    if (to.meta.hasOwnProperty('bread')) {
-      //添加面包屑，vuex方法
-      store.commit("setBread", to.meta.bread)
-    }else{
-      store.commit("setBread",[])
-    }
-  }
-  next()
-})
+// router.beforeEach((to, form, next) => {
+//   //判断
+//   if (to.path == '/login') {
+//   } else {
+//     if (store.state.token == "") {
+//       alert('请登录')
+//       next('/login')
+//     }
+//     //路由守卫添加面包屑
+//     if (to.meta.hasOwnProperty('bread')) {
+//       //添加面包屑，vuex方法
+//       store.commit("setBread", to.meta.bread)
+//     } else {
+//       store.commit("setBread", [])
+//     }
+//   }
+//   next()
+// })
 
 new Vue({
   router,

@@ -4,62 +4,103 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-      path:'/',
-      redirect:"/index",                                                
-  },
+  //后台管理
+  // {
+  //     path:'/',
+  //     redirect:"/index",                                                
+  // },
   {
     path: '/login',
     name: 'admin_login',
-    component: ()=>import('@/views/Login')
-  }, 
+    component: () => import('@/views/Login')
+  },
   {
     path: '/home',
     name: 'Home',
-    component: ()=>import('@/views/Home.vue'),
-    
-    children:[
-      {
+    component: () => import('@/views/Home.vue'),
+    children: [{
         path: '/index',
         name: 'admin_index',
-        component: ()=>import('@/views/home/index'),
-        meta:{
-          bread:['后台管理']
+        component: () => import('@/views/home/index'),
+        meta: {
+          bread: ['后台管理']
         }
-      }, 
+      },
       {
         path: '/picture',
         name: 'admin_picture',
-        component: ()=>import('@/views/home/picture'),
-        meta:{
-          bread:['相册管理']
+        component: () => import('@/views/home/picture'),
+        meta: {
+          bread: ['相册管理']
         }
-      }, 
+      },
       {
         path: '/list',
         name: 'admin_list',
-        component: ()=>import('@/views/home/list'),
-        meta:{
-          bread:['会员管理','会员列表']
+        component: () => import('@/views/home/list'),
+        meta: {
+          bread: ['会员管理', '会员列表']
         }
-      },  
+      },
       {
         path: '/goodlist',
         name: 'admin_goodlist',
-        component: ()=>import('@/views/home/goodlist'),
-        meta:{
-          bread:['管理','图书列表']
+        component: () => import('@/views/home/goodlist'),
+        meta: {
+          bread: ['管理', '图书列表']
         }
-      }, 
+      },
       {
         path: '/setting',
         name: 'admin_setting',
-        component: ()=>import('@/views/home/setting'),
-        meta:{
-          bread:['设置','基本设置']
+        component: () => import('@/views/home/setting'),
+        meta: {
+          bread: ['设置', '基本设置']
         }
-      }, 
+      },
     ]
+  },
+  //购物车
+  {
+    path: '/',
+    redirect: "/m_home",
+  },
+  {
+    path: '/m_home',
+    name: 'm_home',
+    component: () => import('@/components/mypro/Home'),
+    redirect:"/m_index",
+    children: [{
+        path: '/m_index',
+        name: 'm_index',
+        component: () => import('@/components/mypro/home/index'),
+      },
+      {
+        path: '/m_cart',
+        name: 'm_cart',
+        component: () => import('@/components/mypro/home/cart'),
+      },
+      {
+        path: '/m_cate',
+        name: 'm_cate',
+        component: () => import('@/components/mypro/home/cate'),
+      },
+      {
+        path: '/m_my',
+        name: 'm_my',
+        component: () => import('@/components/mypro/home/my'),
+      }
+    ]
+  },
+  {
+    path: '/m_cut',
+    name: 'm_cut',
+    component: () => import('@/components/mypro/common/cutlist'),
+  },
+  {
+    path: '/m_recommand',
+    name: 'm_recommand',
+    component: () => import('@/components/mypro/common/recommand'),
   },
 ]
 

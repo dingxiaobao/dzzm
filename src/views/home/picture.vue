@@ -17,6 +17,7 @@
           </el-form-item>
         </el-form>
         <div>
+          <el-button type="primary" size="small" @click="alldel" v-show="this.check.length>0">选择删除</el-button>
           <el-button type="success" size="small" @click="addclass = true">创建相册</el-button>
           <el-button type="warning" size="small" @click="scimg=true">上传图片</el-button>
         </div>
@@ -31,6 +32,7 @@
               @click.self="hh(item.id)"
             >
               <span>{{item.name}}</span>
+              <span></span>
               <el-dropdown @command="bj">
                 <span class="el-dropdown-link">
                   {{item.images_count}}
@@ -56,6 +58,7 @@
                 <div style="padding: 14px;">
                   <span>{{item.name}}</span>
                   <div class="bottom clearfix">
+                    <input type="checkbox" v-model="check" :value="item.id">
                     <el-button type="text" icon="el-icon-edit" @click="imgbj(item)"></el-button>
                     <el-button type="text" icon="el-icon-delete" @click="imgdel(item.id)"></el-button>
                   </div>
@@ -120,7 +123,7 @@
       </div>
     </el-dialog>
     <!-- 上传相册 -->
-    <el-dialog title="上传相册" :visible.sync="scimg">
+    <el-dialog title="上传相册" :visible.sync="scimg" @close="getlist">
       <el-upload
         class="upload-demo"
         drag
@@ -128,6 +131,8 @@
         multiple
         :headers="{token: this.$store.state.token}"
         :on-success="uploadSuccess"
+        name='img'
+        :data="{image_class_id:this.cid}"
       >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">
@@ -162,11 +167,12 @@ export default {
       addclass: false,
       classimg: false,
       scimg: false,
-      obj: {}
+      obj: {},
+      check:[]
     };
   },
   methods: {
-    getlist() {
+    getlist(flag=false) {
       this.$axios.get("admin/imageclass/1").then(dzz => {
         console.log(dzz);
         this.list = dzz.data.list;
@@ -288,6 +294,16 @@ export default {
 
     ss() {
       this.getimage();
+    },
+    //批量删除图片
+    alldel(){
+      this.$axios.post('/admin/image/delete_all',{ids:this.check}).then(dzz=>{
+        this.$message.success('批量删除成功')
+        this.getimage()
+      }).catch(error=>{
+        console.log(error.response.data);
+        
+      })
     }
   },
   mounted() {
