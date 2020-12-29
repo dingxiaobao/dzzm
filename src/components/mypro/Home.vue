@@ -3,8 +3,8 @@
     <router-view></router-view>
     <van-tabbar v-model="active" active-color="#ee0a24" inactive-color="#000" route>
       <van-tabbar-item icon="home-o" to="/m_index">首页</van-tabbar-item>
-      <van-tabbar-item icon="apps-o" to="/m_cart">分类</van-tabbar-item>
-      <van-tabbar-item icon="shopping-cart-o" to="/m_cate">购物车</van-tabbar-item>
+      <van-tabbar-item icon="apps-o" to="/m_cate">分类</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" to="/m_cart">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" to="/m_my">我的</van-tabbar-item>
     </van-tabbar>
   </div>

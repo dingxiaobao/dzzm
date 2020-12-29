@@ -14,7 +14,9 @@ export default new Vuex.Store({
     loginmsg: {},
     isLoading:false,
     //面包屑
-    bread:[]
+    bread:[],
+    //模糊搜索记录
+    historyList:[],
   },
   mutations: {
     dologin(state, obj) {
@@ -33,6 +35,17 @@ export default new Vuex.Store({
     setBread(state,bread){
      console.log(bread);
       state.bread=bread
+    },
+    //添加到历史记录
+    addHistory(state,name){
+      if(state.historyList.length>=8){
+        state.historyList.pop()
+      }
+      state.historyList.unshift(name)
+    },
+    //删除全部
+    remove(state,index=0){
+      state.historyList=[];
     }
   },
   actions: {},

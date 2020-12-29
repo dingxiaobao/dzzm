@@ -116,7 +116,7 @@ export default {
       this.$axios
         .get("https://api.it120.cc/small4/shop/goods/list")
         .then(dzz => {
-          console.log(dzz);
+        //   console.log(dzz);
           let arr = dzz.data.filter(item => {
             return item.name.indexOf("测试") == -1;
           });

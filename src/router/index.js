@@ -69,21 +69,21 @@ const routes = [
     path: '/m_home',
     name: 'm_home',
     component: () => import('@/components/mypro/Home'),
-    redirect:"/m_index",
+    redirect: "/m_index",
     children: [{
         path: '/m_index',
         name: 'm_index',
         component: () => import('@/components/mypro/home/index'),
       },
       {
-        path: '/m_cart',
-        name: 'm_cart',
-        component: () => import('@/components/mypro/home/cart'),
-      },
-      {
         path: '/m_cate',
         name: 'm_cate',
         component: () => import('@/components/mypro/home/cate'),
+      },
+      {
+        path: '/m_cart',
+        name: 'm_cart',
+        component: () => import('@/components/mypro/home/cart'),
       },
       {
         path: '/m_my',
@@ -101,6 +101,11 @@ const routes = [
     path: '/m_recommand',
     name: 'm_recommand',
     component: () => import('@/components/mypro/common/recommand'),
+  },
+  {
+    path: '/m_search',
+    name: 'm_rsearch',
+    component: () => import('@/components/mypro/goods/search'),
   },
 ]
 

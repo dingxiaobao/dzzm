@@ -1,7 +1,9 @@
 <template>
   <div>
     <van-nav-bar title="人气推荐" left-arrow @click-left="$router.go(-1)" fixed />
-    <recommand :goodslist="goodslist" />
+    <div style=" margin-top: 50px;">
+      <recommand :goodslist="goodslist" />
+    </div>
   </div>
 </template>
 

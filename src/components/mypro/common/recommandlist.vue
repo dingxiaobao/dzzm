@@ -28,7 +28,6 @@ export default {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 50px;
   .item {
     width: 48%;
     margin: 2% 1%;
