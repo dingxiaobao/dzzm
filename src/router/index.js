@@ -2,7 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
-
+//因为在实例中还没有生成 手动引入
+import Store from "../store"
+import {Toast} from 'vant';
 const routes = [
   //后台管理
   // {
@@ -106,6 +108,11 @@ const routes = [
     path: '/m_search',
     name: 'm_rsearch',
     component: () => import('@/components/mypro/goods/search'),
+  },
+  {
+    path: '/m_login',
+    name: 'm_login',
+    component: () => import('@/components/mypro/Login'),
   },
 ]
 
