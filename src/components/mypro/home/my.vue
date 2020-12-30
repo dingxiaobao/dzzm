@@ -30,7 +30,7 @@ export default {
     this.$axios
       .post("https://api.it120.cc/small4/user/detail", formdata)
       .then(dzz => {
-        console.log(dzz);
+        // console.log(dzz);
         this.list = dzz.data.base;
       });
   },

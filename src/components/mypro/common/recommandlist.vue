@@ -1,6 +1,6 @@
 <template>
   <div class="recnav">
-    <div class="item" v-for="item in goodslist" :key="item.id">
+    <div class="item" v-for="item in goodslist" :key="item.id" @click="$router.push('/m_detail?id='+item.id)">
       <img :src="item.pic" />
       <p class="desc">{{item.name}}</p>
       <p>{{item.recommendStatusStr}}</p>

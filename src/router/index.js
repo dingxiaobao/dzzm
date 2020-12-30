@@ -114,6 +114,11 @@ const routes = [
     name: 'm_login',
     component: () => import('@/components/mypro/Login'),
   },
+  {
+    path: '/m_detail',
+    name: 'm_detail',
+    component: () => import('@/components/mypro/goods/detail'),
+  },
 ]
 
 const router = new VueRouter({

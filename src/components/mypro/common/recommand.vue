@@ -19,7 +19,7 @@ export default {
   created() {},
   mounted() {
     this.$axios.get("https://api.it120.cc/small4/shop/goods/list").then(dzz => {
-      console.log(dzz);
+      // console.log(dzz);
       this.goodslist = dzz.data;
     });
   },
