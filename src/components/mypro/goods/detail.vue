@@ -35,7 +35,7 @@
         <van-tab title="商品评价"></van-tab>
       </van-tabs>
       <div id="good-content" v-show="active==0" v-html="content"></div>
-      <div v-show="active==1">商品评价</div>
+      <div v-show="active==1">hhh</div>
     </div>
     <!-- 商品导航内容 -->
     <van-goods-action>
