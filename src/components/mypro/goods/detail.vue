@@ -40,7 +40,12 @@
     <!-- 商品导航内容 -->
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="客服" color="#ee0a24" />
-      <van-goods-action-icon icon="cart-o" text="购物车" />
+      <van-goods-action-icon
+        icon="cart-o"
+        text="购物车"
+        :badge="$store.getters.nums"
+        @click="$router.push('/m_cart')"
+      />
       <van-goods-action-icon icon="star" text="已收藏" color="#ff5000" />
       <van-goods-action-button type="warning" text="加入购物车" @click="show=true" />
       <van-goods-action-button type="danger" text="立即购买" />
@@ -51,7 +56,7 @@
       :sku="sku"
       :goods="goods"
       :goods-id="id"
-      @sku-seleted="selSku"
+      @add-cart="addCart"
       @stepper-change="Change"
     />
   </div>
@@ -177,8 +182,9 @@ export default {
       },
       goods: {
         // 默认商品 sku 缩略图
-        picture: 'https://img.yzcdn.cn/1.jpg'
-      }
+        picture: "https://img.yzcdn.cn/1.jpg"
+      },
+      goods_num: 1
     };
   },
   created() {
@@ -196,10 +202,14 @@ export default {
           this.banner = dzz.data.pics;
           this.goods_info = dzz.data.basicInfo;
           this.content = dzz.data.content;
+          if (dzz.data.hasOwnProperty("properties")) {
+            this.setSku(dzz.data.properties);
+          }
+          console.log(dzz.data.properties);
 
-          this.goods.picture=this.banner[0].pic
+          this.goods.picture = this.banner[0].pic;
           this.$nextTick(() => {
-            let imgs = document.querySelectorAll(".img-lazyload");
+            let imgs = document.getElementsByClassName("img-lazyload");
             // console.log(imgs);
             for (let i = 0; i < imgs.length; i++) {
               imgs[i].style.width = "100%";
@@ -209,10 +219,52 @@ export default {
         });
     },
     selSku(skuval) {
-        console.log(skuval)
+      console.log(skuval);
     },
-    Change(num){
-        console.log(num)
+    setSku(property) {
+      console.log(property);
+      let tree = [];
+      property.forEach(item => {
+        let obj = {
+          k: item.name,
+          k_s: "p_"+item.id,
+          v: item.childsCurGoods,
+        };
+        tree.push(obj)
+      });
+      console.log(tree)
+      this.sku.tree=tree
+    },
+    Change(num) {
+      console.log(num);
+      this.num = num;
+    },
+    //添加到购物车
+    addCart() {
+      if (this.$store.state.token == "") {
+        this.$dialog
+          .confirm({
+            title: "登录提示",
+            message: "你还未登录,请先登录"
+          })
+          .then(() => {
+            this.$router.push("/m_login");
+          })
+          .catch(() => {
+            this.$toast("你已取消登录");
+          });
+      }
+      let goods = {
+        id: this.id,
+        name: this.goods_info.name,
+        img: this.goods.picture,
+        price: this.goods_info.originalPrice,
+        num: this.goods_num,
+        checkd: true
+      };
+      this.$store.commit("addCart", goods);
+      this.$toast.success("加入购物车成功");
+      this.show = false;
     }
   },
   computed: {}

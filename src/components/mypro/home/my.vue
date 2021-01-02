@@ -5,13 +5,16 @@
       <span>{{list.mobile}}</span>
       <van-button type="success" hairline @click="lagout">退出</van-button>
     </div>
-
-    <van-notice-bar
-      left-icon="volume-o"
-      text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
-      background="#f0f0f0"
-      color="#bd2323"
-    />
+    <transition>
+      <van-notice-bar
+        left-icon="volume-o"
+        text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+        background="#f0f0f0"
+        color="#bd2323"
+        v-show="show"
+      />
+    </transition>
+    <van-button @click="show=!show">Toggle</van-button>
   </div>
 </template>
 
@@ -19,7 +22,8 @@
 export default {
   data() {
     return {
-      list: {}
+      list: {},
+      show: true
     };
   },
   created() {},
@@ -61,16 +65,27 @@ export default {
   background: burlywood;
   flex-wrap: wrap;
   box-sizing: border-box;
-  .van-image{
+  .van-image {
     margin-top: 4px;
   }
-  span{
+  span {
     margin: 5px;
   }
-  .van-button{
+  .van-button {
     margin-top: 15px;
     height: 30px;
     float: right;
   }
+}
+.v-enter,
+.v-leave-to {
+  transform: translate(-100%,-40%);
+}
+// .v-enter-to {
+//   transform: translateX();
+// }
+.v-enter-active,
+.v-leave-active {
+  transition: all 3s ease;
 }
 </style>
